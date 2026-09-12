@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { COMPANY_INFO } from '../../data/mockData';
+import { PageBanner } from '../PageBanner';
 
-export const ContactScreen: React.FC = () => {
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+interface ContactScreenProps {
+  onOpenConsultation?: () => void;
+}
+
+export const ContactScreen: React.FC<ContactScreenProps> = () => {
+  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
@@ -13,165 +17,83 @@ export const ContactScreen: React.FC = () => {
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
-      setName('');
-      setPhone('');
+      setFullName('');
       setEmail('');
+      setPhone('');
       setMessage('');
-    }, 4000);
+    }, 5000);
   };
 
   return (
-    <div className="w-full bg-[#f8fafc] py-10 lg:py-16">
-      <div className="max-w-[1720px] mx-auto px-4 sm:px-8 xl:px-12 space-y-10">
-        {/* Page Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <span className="inline-block px-3.5 py-1 rounded-full bg-[#cce5ff] text-[#006194] text-[12px] font-bold uppercase tracking-wider">
-            Kết Nối Nhanh Chóng
-          </span>
-          <h1 className="text-[30px] sm:text-[38px] font-extrabold text-[#006194] tracking-tight uppercase">
-            LIÊN HỆ & TRỤ SỞ DOANH NGHIỆP
-          </h1>
-          <div className="w-20 h-1 bg-[#bb0112] rounded-full mx-auto"></div>
-          <p className="text-[15px] text-[#475569] leading-relaxed">
-            Đội ngũ kỹ thuật viên và chuyên viên kinh doanh của Trí Việt Phát luôn sẵn sàng tiếp nhận yêu cầu, cung cấp giải pháp và báo giá nhanh chóng nhất.
+    <div className="w-full bg-[#f8fafc] min-h-screen">
+      {/* Banner */}
+      <PageBanner
+        title="Liên hệ"
+        backgroundImage="https://thietbiytegroup.com/wp-content/uploads/2024/09/lien-he-mua-hang.png"
+        breadcrumbs={[{ label: 'Trang chủ' }, { label: 'Liên hệ' }]}
+      />
+
+      <div className="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
+        {/* Slogan */}
+        <div className="text-center max-w-3xl mx-auto">
+          <p className="text-[15px] sm:text-[16.5px] text-[#1e293b] font-medium leading-relaxed italic">
+            "Trí Việt Phát luôn tiên phong nghiên cứu, phát triển và cung cấp cho thị trường các loại thiết bị, sản phẩm với chất lượng tốt nhất."
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Contact Details Card */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-[#e2e8f0] space-y-6">
-              <div className="flex items-center gap-3">
-                <img
-                  src={COMPANY_INFO.logoUrl}
-                  alt="Logo Trí Việt Phát"
-                  className="h-12 w-auto max-h-12 object-contain rounded-lg border border-[#e2e8f0] p-1 shadow-xs"
-                />
-                <div>
-                  <h3 className="text-[17px] font-bold text-[#006194] uppercase leading-snug">
-                    {COMPANY_INFO.name}
-                  </h3>
-                  <span className="text-[12px] text-[#475569]">
-                    MST/GPĐKKD: <strong>{COMPANY_INFO.licenseNo}</strong>
-                  </span>
-                </div>
+        {/* 2-Column Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          {/* Left: Contact Form */}
+          <div className="lg:col-span-6 bg-white rounded-2xl border border-[#e2e8f0] p-5 sm:p-6 shadow-xs flex flex-col justify-between">
+            <div>
+              <div className="border-b-2 border-[#D7040F] mb-5">
+                <span className="inline-block bg-[#D7040F] text-white text-[14.5px] font-bold uppercase px-3.5 py-1.5 rounded-tr-[14px] tracking-wide">
+                  Liên hệ gửi yêu cầu
+                </span>
               </div>
-
-              <div className="space-y-4 text-[14px] text-[#475569]">
-                <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-[#e0f2fe] text-[#006194] flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-[20px]">location_on</span>
-                  </div>
-                  <div>
-                    <strong className="text-[#0f172a] block">Trụ sở & Văn phòng giao dịch:</strong>
-                    <span>{COMPANY_INFO.address}</span>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-[#fee2e2] text-[#bb0112] flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-[20px]">phone_in_talk</span>
-                  </div>
-                  <div>
-                    <strong className="text-[#0f172a] block">Hotline 24/7:</strong>
-                    <a
-                      href={`tel:${COMPANY_INFO.hotline.replace(/\./g, '')}`}
-                      className="text-[#bb0112] font-bold text-[16px] hover:underline"
-                    >
-                      {COMPANY_INFO.hotline}
-                    </a>
-                    <span className="text-[12px] text-[#475569] block">
-                      Điện thoại bàn: {COMPANY_INFO.phone}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-[#e0f2fe] text-[#006194] flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-[20px]">mail</span>
-                  </div>
-                  <div>
-                    <strong className="text-[#0f172a] block">Email tiếp nhận thông tin:</strong>
-                    <a
-                      href={`mailto:${COMPANY_INFO.email}`}
-                      className="text-[#006194] hover:underline"
-                    >
-                      {COMPANY_INFO.email}
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-[#f1f5f9] text-[#475569] flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-[20px]">schedule</span>
-                  </div>
-                  <div>
-                    <strong className="text-[#0f172a] block">Giờ làm việc:</strong>
-                    <span>Thứ Hai – Thứ Bảy: 08:00 – 17:30 (Kỹ thuật trực cấp cứu 24/7)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Zalo Direct Box */}
-            <div className="p-6 rounded-2xl bg-[#006194] text-white flex items-center justify-between gap-4 shadow-sm">
-              <div>
-                <h4 className="text-[16px] font-bold">Chat trực tiếp qua Zalo</h4>
-                <p className="text-[12px] text-[#cce5ff]">
-                  Gặp kỹ sư hỗ trợ báo giá và tài liệu kỹ thuật
-                </p>
-              </div>
-              <a
-                href={COMPANY_INFO.zaloUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 rounded-xl bg-white text-[#006194] font-bold text-[13px] hover:bg-[#e0f2fe] transition-colors"
-              >
-                Mở Zalo ngay
-              </a>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="lg:col-span-7">
-            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-[#e2e8f0]">
-              <h3 className="text-[20px] font-bold text-[#0f172a] mb-2">
-                Gửi Thắc Mắc & Yêu Cầu Cho Chúng Tôi
-              </h3>
-              <p className="text-[13.5px] text-[#475569] mb-6">
-                Vui lòng điền thông tin bên dưới, chuyên viên của Trí Việt Phát sẽ phản hồi sớm nhất.
-              </p>
 
               {submitted ? (
-                <div className="text-center py-10 space-y-3 bg-[#f8fafc] rounded-xl border border-[#e2e8f0]">
-                  <span className="material-symbols-outlined text-[44px] text-[#006194]">
-                    check_circle
-                  </span>
-                  <h4 className="text-[18px] font-bold text-[#0f172a]">
-                    Cảm ơn Quý khách đã gửi tin nhắn!
-                  </h4>
-                  <p className="text-[13.5px] text-[#475569] max-w-sm mx-auto">
-                    Chúng tôi đã ghi nhận nội dung và sẽ liên hệ lại với Quý khách qua số điện thoại <strong>{phone}</strong> trong thời gian sớm nhất.
+                <div className="p-5 rounded-xl bg-[#e0f2fe] border border-[#bae6fd] text-[#006194] space-y-2">
+                  <div className="flex items-center gap-2 font-bold text-[15px]">
+                    <span className="material-symbols-outlined text-[22px]">check_circle</span>
+                    <span>Gửi yêu cầu liên hệ thành công!</span>
+                  </div>
+                  <p className="text-[13.5px]">
+                    Cảm ơn bạn <strong>{fullName}</strong>. Đội ngũ chuyên viên tư vấn Trí Việt Phát sẽ liên hệ lại qua số điện thoại <strong>{phone}</strong> trong thời gian sớm nhất.
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-[13.5px] font-bold text-[#334155] mb-1.5">
+                      Họ và tên <span className="text-[#bb0112]">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      placeholder="Nhập họ và tên của bạn"
+                      className="w-full px-4 py-2.5 rounded-xl border border-[#cbd5e1] text-[14px] focus:outline-none focus:border-[#006194] focus:ring-1 focus:ring-[#006194] transition-all bg-white"
+                    />
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[12px] font-bold text-[#0f172a] mb-1">
-                        Họ và tên <span className="text-[#bb0112]">*</span>
+                      <label className="block text-[13.5px] font-bold text-[#334155] mb-1.5">
+                        Email của bạn <span className="text-[#bb0112]">*</span>
                       </label>
                       <input
-                        type="text"
+                        type="email"
                         required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Họ tên của bạn"
-                        className="w-full px-3 py-2.5 rounded-xl bg-[#f1f5f9] text-[13.5px] text-[#0f172a] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#006194]"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="email@example.com"
+                        className="w-full px-4 py-2.5 rounded-xl border border-[#cbd5e1] text-[14px] focus:outline-none focus:border-[#006194] focus:ring-1 focus:ring-[#006194] transition-all bg-white"
                       />
                     </div>
                     <div>
-                      <label className="block text-[12px] font-bold text-[#0f172a] mb-1">
+                      <label className="block text-[13.5px] font-bold text-[#334155] mb-1.5">
                         Số điện thoại <span className="text-[#bb0112]">*</span>
                       </label>
                       <input
@@ -179,49 +101,151 @@ export const ContactScreen: React.FC = () => {
                         required
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        placeholder="Số điện thoại liên hệ"
-                        className="w-full px-3 py-2.5 rounded-xl bg-[#f1f5f9] text-[13.5px] text-[#0f172a] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#006194]"
+                        placeholder="0912 345 678"
+                        className="w-full px-4 py-2.5 rounded-xl border border-[#cbd5e1] text-[14px] focus:outline-none focus:border-[#006194] focus:ring-1 focus:ring-[#006194] transition-all bg-white"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-[12px] font-bold text-[#0f172a] mb-1">
-                      Địa chỉ Email <span className="text-[#bb0112]">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Email nhận thông tin"
-                      className="w-full px-3 py-2.5 rounded-xl bg-[#f1f5f9] text-[13.5px] text-[#0f172a] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#006194]"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[12px] font-bold text-[#0f172a] mb-1">
-                      Nội dung yêu cầu / Báo giá thiết bị
+                    <label className="block text-[13.5px] font-bold text-[#334155] mb-1.5">
+                      Lời nhắn
                     </label>
                     <textarea
                       rows={4}
-                      required
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Chi tiết câu hỏi, mã máy cần tư vấn hoặc dịch vụ sửa chữa bảo dưỡng..."
-                      className="w-full p-3 rounded-xl bg-[#f1f5f9] text-[13.5px] text-[#0f172a] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#006194]"
-                    ></textarea>
+                      placeholder="Vui lòng để lại nội dung yêu cầu báo giá, tư vấn thiết bị hoặc hợp tác..."
+                      className="w-full px-4 py-2.5 rounded-xl border border-[#cbd5e1] text-[14px] focus:outline-none focus:border-[#006194] focus:ring-1 focus:ring-[#006194] transition-all bg-white"
+                    />
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 rounded-xl bg-[#bb0112] hover:bg-[#b91c1c] text-white text-[14px] font-bold uppercase tracking-wider transition-colors shadow cursor-pointer"
-                  >
-                    GỬI THÔNG ĐIỆP
-                  </button>
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      className="px-7 py-3 rounded-xl bg-[#D7040F] hover:bg-[#b0030c] text-white font-bold text-[14px] uppercase tracking-wide shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center gap-2"
+                    >
+                      <span className="material-symbols-outlined text-[18px]">send</span>
+                      <span>Gửi yêu cầu</span>
+                    </button>
+                  </div>
                 </form>
               )}
             </div>
+          </div>
+
+          {/* Right: Company Info - Exactly 100% clone of thietbiytegroup.com */}
+          <div className="lg:col-span-6 bg-white rounded-2xl border border-[#e2e8f0] p-5 sm:p-6 shadow-xs flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="border-b-2 border-[#D7040F] pb-0">
+                <span className="inline-block bg-[#D7040F] text-white text-[14.5px] font-bold uppercase px-3.5 py-1.5 rounded-tr-[14px] tracking-wide">
+                  Thông tin công ty
+                </span>
+              </div>
+
+              <div>
+                <h3 className="text-[19px] font-extrabold text-[#006194] uppercase leading-snug mb-1.5">
+                  Công ty thiết bị y tế Trí Việt Phát
+                </h3>
+                <p className="text-[13px] text-[#64748b] leading-relaxed">
+                  Công ty cung cấp thiết bị y tế dịch vụ Trí Việt Phát được thành lập theo Quyết định số <strong className="text-[#0f172a]">0105558779</strong> của Sở kế hoạch đầu tư thành phố Hà Nội
+                </p>
+              </div>
+
+              <div className="space-y-3 pt-1 text-[13.5px]">
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#fee2e2] text-[#bb0112] flex items-center justify-center shrink-0">
+                    <span className="material-symbols-outlined text-[20px]">phone</span>
+                  </div>
+                  <div>
+                    <span className="text-[#64748b] text-[12px] block font-semibold">Điện thoại bàn:</span>
+                    <a href="tel:0392123688" className="font-bold text-[#bb0112] text-[15px] hover:underline">
+                      0392.123.688
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#fee2e2] text-[#bb0112] flex items-center justify-center shrink-0">
+                    <span className="material-symbols-outlined text-[20px]">phone_in_talk</span>
+                  </div>
+                  <div>
+                    <span className="text-[#64748b] text-[12px] block font-semibold">Hotline tư vấn 24/7:</span>
+                    <a href="tel:0904698699" className="font-bold text-[#bb0112] text-[15px] hover:underline">
+                      0904.698.699
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#e0f2fe] text-[#006194] flex items-center justify-center shrink-0">
+                    <span className="material-symbols-outlined text-[20px]">mail</span>
+                  </div>
+                  <div>
+                    <span className="text-[#64748b] text-[12px] block font-semibold">Email:</span>
+                    <a href="mailto:infothietbiyte168@gmail.com" className="font-bold text-[#006194] hover:underline">
+                      infothietbiyte168@gmail.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#e0f2fe] text-[#006194] flex items-center justify-center shrink-0">
+                    <span className="material-symbols-outlined text-[20px]">apartment</span>
+                  </div>
+                  <div>
+                    <span className="text-[#64748b] text-[12px] block font-semibold">Văn phòng giao dịch:</span>
+                    <span className="text-[#1e293b] font-medium leading-relaxed text-[13px]">
+                      Số 5, nhà P16 TT Trương Định, phường Tương Mai, Quận Hoàng Mai, Thành phố Hà Nội, Việt Nam
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#e0f2fe] text-[#006194] flex items-center justify-center shrink-0">
+                    <span className="material-symbols-outlined text-[20px]">location_on</span>
+                  </div>
+                  <div>
+                    <span className="text-[#64748b] text-[12px] block font-semibold">Trụ sở công ty:</span>
+                    <span className="text-[#1e293b] font-medium leading-relaxed text-[13px]">
+                      Số 5, nhà P16 TT Trương Định, phường Tương Mai, Quận Hoàng Mai, Thành phố Hà Nội, Việt Nam
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Full-width Google Map from original site */}
+        <div className="bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden shadow-xs">
+          <div className="p-3.5 bg-[#f8fafc] border-b border-[#e2e8f0] flex items-center justify-between">
+            <div className="flex items-center gap-2 text-[13.5px] font-bold text-[#0f172a]">
+              <span className="material-symbols-outlined text-[#bb0112] text-[18px]">map</span>
+              <span>Bản đồ chỉ đường - Trụ sở Công ty Thiết Bị Y Tế Trí Việt Phát</span>
+            </div>
+            <a
+              href="https://maps.google.com/?q=168+Hoàng+Mai,+Hoàng+Văn+Thụ,+Hoàng+Mai,+Hà+Nội"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#006194] hover:underline text-[12.5px] font-semibold flex items-center gap-1"
+            >
+              <span>Xem trên Google Maps</span>
+              <span className="material-symbols-outlined text-[14px]">open_in_new</span>
+            </a>
+          </div>
+
+          <div className="w-full h-[320px] sm:h-[360px]">
+            <iframe
+              title="Bản đồ chỉ đường Trí Việt Phát"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7450.086767292439!2d105.85339900000001!3d20.990897999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac1346790a47%3A0x6083b6d5d743c626!2zMTY4IMSQLiBIb8OgbmcgTWFpLCBIb8OgbmcgVsSDbiBUaOG7pSwgSG_DoG5nIE1haSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2sus!4v1715012797261!5m2!1svi!2sus"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </div>

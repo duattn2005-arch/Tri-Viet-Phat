@@ -1,16 +1,17 @@
-// Danh sách 34 tỉnh, thành phố trực thuộc Trung ương của Việt Nam sau sáp nhập
+// Danh sách 34 tỉnh, thành phố của Việt Nam (8 thành phố trực thuộc Trung ương + 26 tỉnh)
 export const MAJOR_CITIES = [
   'Hà Nội',
   'TP. Hồ Chí Minh',
   'Hải Phòng',
   'Đà Nẵng',
   'Cần Thơ',
-  'Huế'
+  'Huế',
+  'Bắc Ninh',
+  'Quảng Ninh'
 ];
 
-export const PROVINCES_28 = [
+export const PROVINCES_26 = [
   'An Giang',
-  'Bắc Ninh',
   'Cà Mau',
   'Cao Bằng',
   'Đắk Lắk',
@@ -29,7 +30,6 @@ export const PROVINCES_28 = [
   'Ninh Bình',
   'Phú Thọ',
   'Quảng Ngãi',
-  'Quảng Ninh',
   'Quảng Trị',
   'Sơn La',
   'Tây Ninh',
@@ -39,7 +39,10 @@ export const PROVINCES_28 = [
   'Vĩnh Long'
 ];
 
+// Alias for backward compatibility
+export const PROVINCES_28 = PROVINCES_26;
+
 export const PROVINCES_34: string[] = [
   ...MAJOR_CITIES,
-  ...PROVINCES_28
+  ...PROVINCES_26
 ];

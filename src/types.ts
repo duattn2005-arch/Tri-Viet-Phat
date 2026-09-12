@@ -22,6 +22,7 @@ export interface Product {
   manufacturer?: string;
   countryOfOrigin?: string;
   benefits?: string[];
+  detailHtml?: string;
   detailedFeatures?: {
     title: string;
     desc: string;

@@ -47,7 +47,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#0f172a] font-sans antialiased selection:bg-[#cce5ff] selection:text-[#006194]">
+    <div className="min-h-screen flex flex-col bg-white text-[#0f172a] font-sans antialiased selection:bg-[#cce5ff] selection:text-[#006194] overflow-x-hidden w-full max-w-full">
       {/* Top Header */}
       <Header
         currentTab={currentTab}
@@ -57,7 +57,7 @@ export default function App() {
       />
 
       {/* Main Content Body (with padding top for fixed header h-20 + topbar h-9 = 116px) */}
-      <main className="flex-1 pt-[116px] w-full">
+      <main className="flex-1 pt-[116px] w-full max-w-full overflow-x-hidden">
         {currentTab === 'trang-chu' && (
           <HomeScreen
             onSelectProduct={(p) => setSelectedProduct(p)}
@@ -79,15 +79,28 @@ export default function App() {
           />
         )}
 
-        {currentTab === 'tai-lieu' && <DocumentsScreen />}
+        {currentTab === 'tai-lieu' && (
+          <DocumentsScreen
+            initialCategory={categoryFilter}
+            onNavigateCategory={(cat) => handleSelectTab('tai-lieu', cat)}
+            onNavigateTab={handleSelectTab}
+          />
+        )}
 
         {currentTab === 'tin-tuc' && (
-          <NewsScreen onSelectArticle={(a) => setSelectedArticle(a)} />
+          <NewsScreen
+            initialCategory={categoryFilter}
+            onNavigateCategory={(cat) => handleSelectTab('tin-tuc', cat)}
+            onNavigateTab={handleSelectTab}
+            onSelectArticle={(a) => setSelectedArticle(a)}
+          />
         )}
 
         {currentTab === 'tuyen-dung' && <CareersScreen />}
 
-        {currentTab === 'lien-he' && <ContactScreen />}
+        {currentTab === 'lien-he' && (
+          <ContactScreen onOpenConsultation={() => handleOpenConsultation()} />
+        )}
       </main>
 
       {/* Global Footer */}

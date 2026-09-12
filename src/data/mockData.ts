@@ -1,23 +1,26 @@
 import { Product, Article, Partner, DocumentItem, JobOpening } from '../types';
+import { REAL_PRODUCTS } from './thietbiyteProducts';
 
 export const COMPANY_INFO = {
-  name: 'CÔNG TY TNHH THIẾT BỊ Y TẾ TRÍ VIỆT PHÁT',
-  shortName: 'TRÍ VIỆT PHÁT',
-  subTitle: '',
-  englishName: 'Medical Equipment Co., Ltd',
+  name: 'Công ty TNHH Thương mại Dịch vụ Trí Việt Phát',
+  shortName: 'Trí Việt Phát',
+  subTitle: 'Công ty thiết bị y tế Trí Việt Phát',
+  englishName: 'Tri Viet Phat Medical Equipment Co., Ltd',
   licenseNo: '0105558779',
-  licensedBy: 'Sở Kế hoạch và Đầu tư thành phố Hà Nội cấp',
+  licensedBy: 'Sở Kế hoạch và Đầu tư Hà Nội',
   slogan: '“Sự tin tưởng của quý khách hàng là chìa khóa thành công của Công ty”',
   summary: 'Cung cấp giải pháp tổng thể cho phòng xét nghiệm y khoa: từ hệ thống phân tích tự động, máy xét nghiệm huyết học, sinh hóa, nước tiểu đến hóa chất chuẩn và dịch vụ hiệu chuẩn chuẩn mực quốc tế.',
-  hotline: '0984.567.890',
-  phone: '0912.345.678',
+  hotline: '0904.698.699',
+  hotline2: '0392.123.688',
   email: 'infothietbiyte168@gmail.com',
-  address: 'Số 5, nhà P16 TT Trương Định, P. Tương Mai, Q. Hoàng Mai, Hà Nội',
+  address: 'Số 5, nhà P16 TT Trương Định, phường Tương Mai, Quận Hoàng Mai, Thành phố Hà Nội, Việt Nam',
+  vpgd: 'Số 5, nhà P16 TT Trương Định, phường Tương Mai, Quận Hoàng Mai, Thành phố Hà Nội, Việt Nam',
   website: 'www.thietbiytegroup.com',
   yearsOfExperience: '16+',
   genuineReagents: '100%',
-  provincesCovered: '63',
-  zaloUrl: 'https://zalo.me/0984567890',
+  provincesCovered: '34',
+  zaloUrl: 'https://zalo.me/0904698699',
+  facebookUrl: 'https://www.facebook.com/thietbiytevip',
   logoUrl: '/tri-viet-phat1.jpg',
   heroImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB1NM5vdfpcge4IOvCHv0ZtXWueMsjA4dvK1lqrK_gw4m8LjeSfsqphPQGwQfoozRSlLtYdeIpBE1ICsbhIx0RwUUV1WzP7Ugr5ay1Y57Bg4TXrodqsdY0Ud-Wisbb9iT-VObiofZNG6msqtn-7Ti9lMKS8hRi8Th4a_Lk1GXod7BLVOnb_rPZ_f3N1wZs14LDhg5lAVTUQJ6vX20OcbmEdhgd7iNTiY8DIDN_8yrUTVHmL2Vt39Wh53A',
   aboutImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDF63WwJj_P_XstrFS-qvb_72lkEQsYYWJBVs8Nfedx2CZFhSWHTaCF2xSnevdwwl9Msji72ah9_fV1mfynBJ8tDTHgHVuxWqOlds-4u6xvi7HboTEkB8nB34AP8MRDCd8rjVMblvABIKwdlxLkjsK1O3cHdqcFGRCRkiIOqS61ceVDzxHMZ1qASS_-L-CiwOnTBloez4MGD_eUejZpmokFvbWPMS6xTOeyvKOPCbtqarekRQbeWjtNAg',
@@ -72,246 +75,7 @@ export const BUSINESS_AREAS = [
   },
 ];
 
-export const PRODUCTS: Product[] = [
-  {
-    id: 'ac-9803',
-    name: 'Máy xét nghiệm điện giải AC9803 gồm các chất NA, K, CL, CA/LI',
-    category: 'may-xet-nghiem-dien-giai',
-    categoryLabel: 'Điện giải',
-    image: '/mayxetnghiem.png',
-    alt: 'Máy xét nghiệm điện giải AC9803',
-    shortDesc: 'Độ chính xác cao, tự động rửa buồng đo, điện cực tuổi thọ bền bỉ phù hợp phòng khám và bệnh viện.',
-    fullDesc: 'Máy phân tích điện giải tự động AC9803 được thiết kế chuyên dụng cho các phòng xét nghiệm y khoa với khả năng phân tích nhanh và chính xác các chỉ số K, Na, Cl, Ca, pH. Thiết bị ứng dụng công nghệ điện cực chọn lọc ion (ISE) tiên tiến giúp kéo dài tuổi thọ điện cực và giảm thiểu chi phí bảo trì.',
-    brand: 'Audicom',
-    model: 'AC9803',
-    manufacturer: 'Jiangsu Audicom Medical Technology Co. Ltd.',
-    countryOfOrigin: 'Trung Quốc',
-    origin: 'Chính hãng Jiangsu Audicom',
-    benefits: [
-      'Nhà cung cấp uy tín thiết bị y tế ở Việt Nam',
-      'Thiết bị y tế đạt chất lượng giá cả hợp lý',
-      'Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp',
-      'Hàng có sẵn kho có thể giao ngay',
-      'Ưu đãi khi mua hàng với số lượng lớn'
-    ],
-    specs: [
-      { label: 'Thông số đo', value: 'K, Na, Cl, Ca, pH' },
-      { label: 'Thông số tính toán', value: 'nCa, TCa' },
-      { label: 'Thời gian đo', value: '≤ 90s (thời gian lấy mẫu và xả)' },
-      { label: 'Thể tích mẫu', value: '160µl' },
-      { label: 'Nguyên lý đo', value: 'Điện cực chọn lọc ion (ISE)' },
-      { label: 'Vị trí khay mẫu', value: '26 vị trí mẫu tự động' },
-      { label: 'Kết nối máy quét', value: 'Hỗ trợ súng quét mã vạch Barcode trực tiếp' },
-    ],
-    detailedFeatures: [
-      {
-        title: 'Ống xét nghiệm ban đầu để lấy mẫu',
-        desc: 'Máy xét nghiệm có thể sử dụng ống xét nghiệm ban đầu để lấy mẫu trực tiếp để đơn giản hoá quá trình lấy mẫu hoặc có thể chọn sử dụng cốc mẫu lấy mẫu để đáp ứng các quy định xét nghiệm khác nhau.'
-      },
-      {
-        title: 'Giao diện cho máy quét mã vạch',
-        desc: 'Người dùng có thể định cấu hình súng quét theo yêu cầu, lấy thông tin mẫu trực tiếp, giúp giảm khối lượng công việc nhập thủ công'
-      },
-      {
-        title: 'Nhiều vị trí mẫu',
-        desc: 'Vị trí mẫu được tăng lên 26 vị trí, sử dụng phạm vi rộng.'
-      }
-    ],
-    features: [
-      'Ống xét nghiệm ban đầu để lấy mẫu trực tiếp hoặc dùng cốc mẫu linh hoạt',
-      'Giao diện định cấu hình súng quét mã vạch giảm thao tác nhập thủ công',
-      'Khay nạp mẫu tăng lên 26 vị trí mở rộng phạm vi ứng dụng',
-      'Tự động rửa buồng đo và xả mẫu với thời gian phân tích ≤ 90s'
-    ],
-    certifications: ['CE Mark', 'ISO 13485:2016', 'FDA Approved']
-  },
-  {
-    id: 'dewei-reagents',
-    name: 'Bảng hóa chất huyết học Dewei',
-    category: 'hoa-chat-xet-nghiem',
-    categoryLabel: 'Hóa chất huyết học',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDWUPAsMi-U_QNTXmFllU_rnh1eQaZWQqrZf_pze8DjEIiXqNUbzY08DGB8bLezfdVU0nhyq_g-JjkWAcSUtDj5fzJC0mormbVq-hywkNoWcisRYKBUImvp3K3dmUueudFABm5P_S3VFP4JVqQseY52zcPiU6trAow75iuf-qZ2jYNAarNzEghe8uviKmHxdRsnRrE72D809_T1JSU9JgrBXHirbFe-iue7Q_hVB07z_A3i4LLrnNtLdg',
-    alt: 'Bảng hóa chất huyết học Dewei',
-    shortDesc: 'Đồng bộ tương thích hoàn hảo với máy phân tích huyết học 3 thành phần và 5 thành phần bạch cầu.',
-    fullDesc: 'Bộ hóa chất xét nghiệm huyết học Dewei chính hãng được sản xuất theo quy trình kiểm định nghiêm ngặt quốc tế, đảm bảo độ ổn định cao, tương thích với hầu hết các dòng máy xét nghiệm huyết học phổ biến hiện nay như Mindray, Sysmex, Dirui, URIT.',
-    brand: 'dewei 德威',
-    origin: 'Chính hãng Dewei Medical',
-    specs: [
-      { label: 'Dung dịch pha loãng (Diluent)', value: '20L/thùng, pH đệm sinh lý chuẩn' },
-      { label: 'Dung dịch ly giải (Lyse)', value: '500ml/1000ml chai, phá vỡ hồng cầu chọn lọc' },
-      { label: 'Dung dịch rửa (Cleaner/Rinse)', value: '5L/10L hoặc dung dịch tẩy rửa tập trung' },
-      { label: 'Thời hạn bảo quản', value: '24 tháng kể từ ngày sản xuất' },
-      { label: 'Nhiệt độ lưu trữ', value: '2°C - 30°C' },
-    ],
-    features: [
-      'Công thức không chứa Cyanide an toàn với môi trường và người vận hành',
-      'Độ lặp lại (CV) các thông số tế bào máu < 2.0%',
-      'Hạn chế tối đa bám cặn buồng đếm và tắc kim hút',
-      'Giá thành kinh tế, tối ưu chi phí vận hành phòng khám'
-    ],
-    certifications: ['ISO 13485', 'CE-IVD', 'Giấy phép lưu hành Bộ Y Tế']
-  },
-  {
-    id: 'h-1600',
-    name: 'Máy xét nghiệm nước tiểu tự động H-1600',
-    category: 'may-xet-nghiem-nuoc-tieu',
-    categoryLabel: 'Nước tiểu tự động',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCGfh725Zu2hF3LhzH90nNT6RW3HCmCNB38kfmwcaqRMr4E-b3RtJIe2YgAxBRjG6SPZJfNqQhuNPvp_VRwhqKe8FyMPaUMSHSDVN-y-AL6X5vFEOF3W37bQ3uKT64AxhNMIYtQ_WiUVvebj3RW5RitMYbq1kiHmd4D4D91skPUkZUpCjjXnLievrx4wV4TAao1KE5GC75obt72L6id99GdGu7dG16vyXR56TfJaaqerBLCxboaDdBeHA',
-    alt: 'Máy xét nghiệm nước tiểu tự động H-1600',
-    shortDesc: 'Công suất phân tích tốc độ cao, nhận diện que thử thông minh và kết nối LIS tiện lợi.',
-    fullDesc: 'Máy phân tích nước tiểu tự động H-1600 mang lại giải pháp hoàn chỉnh cho phòng xét nghiệm nước tiểu từ quy mô vừa đến lớn. Máy có khả năng tự động nạp que thử, tự động nhận diện vị trí mẫu, và phân tích đa thông số sinh hóa nước tiểu với độ nhạy cao.',
-    brand: 'DIRUI',
-    origin: 'Dirui Industrial',
-    specs: [
-      { label: 'Công suất', value: '300 - 500 mẫu/giờ' },
-      { label: 'Số thông số đo', value: '11, 12 hoặc 14 thông số sinh hóa nước tiểu' },
-      { label: 'Thông số', value: 'Uro, Bil, Ket, Bld, Pro, Nit, Leu, Glu, SG, pH, VC, Microalbumin, Creatinine' },
-      { label: 'Khay nạp mẫu tự động', value: 'Sức chứa lên tới 100 mẫu liên tục' },
-      { label: 'Đầu đọc mã vạch', value: 'Tích hợp sẵn đọc Barcode ống mẫu' },
-      { label: 'Bộ nhớ lưu', value: 'Hơn 20.000 dữ liệu bệnh nhân' },
-    ],
-    features: [
-      'Công nghệ cảm biến quang học lạnh đa bước sóng kéo dài tuổi thọ bóng đèn',
-      'Tự động bù trừ màu sắc nước tiểu tự nhiên tránh âm tính/dương tính giả',
-      'Tích hợp máy in nhiệt tốc độ cao',
-      'Dễ dàng kết nối đồng bộ với máy soi cặn nước tiểu tự động tạo hệ thống trạm kép'
-    ],
-    certifications: ['CE Mark', 'ISO 9001', 'ISO 13485']
-  },
-  {
-    id: 'istar-500',
-    name: 'Máy xét nghiệm miễn dịch hóa phát quang – iStar 500',
-    category: 'may-xet-nghiem-mien-dich',
-    categoryLabel: 'Miễn dịch CLIA',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBClnbgTc2a92rYNggxJsmLEN2q-GmcF8VsmAuIZNOXJt7uD5sjUOlCZMd8qBYoYuD1W27dF1_NeElY41GekWrmHEYzahjmzr3IiOBcIhku-_Gx6d9gQvAvRVxwICq-bXnnuTnePehlXn9vukTObVFk1gL1u_P6dA8qyeRTme6MxrgIEjCAA__LhEAGLYjXnqklGKYz2rmVbn1ZVuGf9clxMS7qjI5STE3Kl94IzbA__6stHyOcvYLpzA',
-    alt: 'Máy xét nghiệm miễn dịch hóa phát quang iStar 500',
-    shortDesc: 'Đo nồng độ hormone, dấu ấn ung thư, bệnh truyền nhiễm với độ nhạy phân tích vượt trội.',
-    fullDesc: 'Hệ thống phân tích miễn dịch tự động iStar 500 áp dụng công nghệ hóa phát quang trực tiếp vi hạt từ tính (CLIA). Được trang bị danh mục xét nghiệm phong phú bao gồm: Tuyến giáp, Sinh sản, Dấu ấn tim mạch, Dấu ấn khối u ung thư, Bệnh nhiễm trùng và Viêm nhiễm.',
-    brand: 'Wondfo',
-    origin: 'Wondfo Biotech',
-    specs: [
-      { label: 'Công nghệ', value: 'Hóa phát quang hạt nano từ tính (Magnetic Particle CLIA)' },
-      { label: 'Tốc độ xét nghiệm', value: '180 - 240 test/giờ' },
-      { label: 'Thời gian có kết quả đầu tiên', value: 'Chỉ sau 14 phút' },
-      { label: 'Vị trí hóa chất', value: '25 vị trí làm lạnh liên tục 24/7 (4°C - 8°C)' },
-      { label: 'Vị trí mẫu', value: '60 vị trí mẫu hỗ trợ nạp liên tục và mẫu khẩn STAT' },
-      { label: 'Hệ thống đo quang', value: 'Ống đếm photon (PMT) độ nhạy cực cao' },
-    ],
-    features: [
-      'Công nghệ rửa từ tính 4 bước triệt tiêu hiệu ứng nền',
-      'Đầu tip dùng một lần loại bỏ hoàn toàn nhiễm chéo mẫu',
-      'Hóa chất dạng sẵn sàng sử dụng (ready-to-use) với mã QR định danh lô',
-      'Tự động pha loãng mẫu nồng độ cao'
-    ],
-    certifications: ['CE-IVD', 'FDA Cleared', 'ISO 13485:2016']
-  },
-  {
-    id: 'quo-test-hba1c',
-    name: 'Máy xét nghiệm HbA1c Quo-Test',
-    category: 'may-xet-nghiem-sinh-hoa',
-    categoryLabel: 'Tiểu đường HbA1c',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDbVUgFi_CwF6HfDvHtmPNIaYDYmGGdMr_HEQwI_pXPha-ccNs1QRwyray0dlgCB3O6mVYCmKkSyEfX3NtpR3xJnjkLPkGujn6x-vLJBWu3bxV6JEjkeklGdw27BGQJR6DV5IScNjP7xsqltNmgK3MASsTXXEFEzqbXcjH8xW327MVhVnKhOzNRbROB0KSeEHyHpE13T9WxAB4fpW7KBRb2i2UUUFsUOBItvvXkUw1RwLbj0eN7shmdEg',
-    alt: 'Máy xét nghiệm HbA1c Quo-Test',
-    shortDesc: 'Kết quả trong vòng 4 phút chỉ từ một giọt máu mao mạch, chuẩn quốc tế IFCC/NGSP.',
-    fullDesc: 'Máy đo HbA1c tại điểm chăm sóc (POCT) Quo-Test đến từ hãng EKF Diagnostics (Đức/Anh). Thiết bị nhỏ gọn, vận hành đơn giản, không bị ảnh hưởng bởi các biến thể hemoglobin bất thường (HbS, HbC, HbD, HbE), mang lại kết quả theo dõi bệnh nhân tiểu đường tin cậy chuẩn vàng.',
-    brand: 'EKF',
-    origin: 'EKF Diagnostics (Châu Âu)',
-    specs: [
-      { label: 'Phương pháp', value: 'Sắc ký ái lực Boronate Affinity' },
-      { label: 'Thời gian phân tích', value: '4 phút / mẫu' },
-      { label: 'Lượng mẫu', value: '4 µL máu mao mạch hoặc tĩnh mạch' },
-      { label: 'Đơn vị đo', value: '% DCCT hoặc mmol/mol IFCC' },
-      { label: 'Dải đo', value: '4% - 15% DCCT (20 - 140 mmol/mol)' },
-      { label: 'Độ chính xác', value: 'CV < 3.0% tại HbA1c 7%' },
-    ],
-    features: [
-      'Không bị can thiệp bởi biến thể huyết sắc tố (Hemoglobin variants)',
-      'Thao tác cực nhanh: Lấy máu -> Đưa vào cartridge -> Đọc kết quả',
-      'Bảo quản cartridge ở nhiệt độ phòng lên đến 90 ngày',
-      'Được khuyến cáo bởi Hội Đái tháo đường Hoa Kỳ (ADA)'
-    ],
-    certifications: ['NGSP Certified', 'IFCC Standard', 'CE-IVD']
-  },
-  {
-    id: 'ocg-102',
-    name: 'Máy phân tích đông máu quang học OCG-102',
-    category: 'may-phan-tich-dong-mau',
-    categoryLabel: 'Đông máu',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCiemcAl9rCbN7_wh_EuhHqNfVR2kSGRWK4FFmQPjYkeLNIlEdJrJBzSLdVNaSmeV3UOA5qetRepPfOUwKf0IaPZGySiz6P-0g2WLTyIDgf1ce1AogfMofyxIFKGWz8IzeWCvancQymcEf1vxexMqio92WFb7a_L0RJHvx23fLz_ZbhsNaFx6ZhDYEg_t8oPyII5RkUNAAr2NMYQA4qMaSOV3eC6Wdu5ORFnAenuQlCbfUh1YXX-z81qw',
-    alt: 'Máy phân tích đông máu quang học OCG-102',
-    shortDesc: 'Đo PT, APTT, TT, FIB và D-Dimer chính xác, hỗ trợ chẩn đoán rối loạn đông cầm máu.',
-    fullDesc: 'Máy đông máu bán tự động 2 kênh đo OCG-102 thích hợp cho các phòng xét nghiệm vừa và nhỏ, khoa phòng cấp cứu cần phân tích nhanh chức năng đông máu trước phẫu thuật hoặc giám sát liệu pháp kháng đông (Warfarin/Heparin).',
-    brand: 'Drawray',
-    origin: 'Chính hãng',
-    specs: [
-      { label: 'Số kênh đo', value: '2 kênh quang học độc lập' },
-      { label: 'Vị trí ủ ấm', value: '16 vị trí ủ mẫu và hóa chất ở 37°C ± 0.5°C' },
-      { label: 'Các xét nghiệm hỗ trợ', value: 'PT (INR), APTT, Fibrinogen (FIB), Thrombin Time (TT), D-Dimer' },
-      { label: 'Hệ thống quang', value: 'LED bước sóng 470nm chống đục và tán xạ' },
-      { label: 'Tự động kích hoạt', value: 'Tự tính thời gian đông máu ngay khi bơm hóa chất' },
-    ],
-    features: [
-      'Pipette điện tử đồng bộ kích hoạt đo tự động',
-      'Tiết kiệm hóa chất xét nghiệm: chỉ cần 25µL - 50µL mỗi test',
-      'Màn hình hiển thị đường cong đông máu theo thời gian thực',
-      'Tích hợp máy in nhiệt nội bộ'
-    ],
-    certifications: ['CE Mark', 'ISO 13485:2016']
-  },
-  {
-    id: 'cs-1600',
-    name: 'Máy xét nghiệm sinh hóa tự động CS-1600',
-    category: 'may-xet-nghiem-sinh-hoa',
-    categoryLabel: 'Sinh hóa tự động',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD648j0NmDPFOaJr8wkC2wz6ncpAQPpZYccosvzKZwhs78RVJFiHqA8ygC_2NwJ1KREkQ_UQoUwlqetMy_90gWpbUlyZfVNcdytRwh4QVzE4thHaPHcWIo2krDP9-FJ3AjQiAofD_E5vhxFga3Rjo_tQMkwNyUDKWy-EU1RdAT8aLAcb-GQm4t72KhyyEnhCKSrMZOU02JNg_EImFYfsYsQaPkI0qWBvjZlkWYWywlc5P5DLBaNfJvZUw',
-    alt: 'Máy xét nghiệm sinh hóa tự động CS-1600',
-    shortDesc: 'Công suất cao 1600 test/giờ, hệ thống quang học trắc quang tiên tiến, tiết kiệm hóa chất.',
-    fullDesc: 'Máy xét nghiệm sinh hóa công suất lớn CS-1600 là lựa chọn tối ưu cho các bệnh viện tuyến tỉnh, trung ương và trung tâm xét nghiệm tập trung. Tốc độ phân tích quang học lên đến 1.200 test/giờ (đạt 1.600 test/giờ khi kết hợp ISE), xử lý trơn tru lưu lượng hàng nghìn bệnh nhân mỗi ngày.',
-    brand: 'DIRUI',
-    origin: 'Dirui Industrial Co., Ltd',
-    specs: [
-      { label: 'Công suất', value: '1.200 test/giờ (quang) và 1.600 test/giờ (với ISE)' },
-      { label: 'Nguyên lý đo', value: 'Đo độ hấp thụ quang học, trắc quang tỷ lệ, ISE' },
-      { label: 'Vị trí hóa chất', value: '160 vị trí (hai đĩa R1, R2 làm lạnh 24/24)' },
-      { label: 'Vị trí mẫu', value: 'Hệ thống nạp thanh ray rack 140 mẫu + 10 khẩn STAT' },
-      { label: 'Cuvette phản ứng', value: 'Thủy tinh cứng vĩnh cửu, tự động rửa 8 bước' },
-      { label: 'Lượng phản ứng tối thiểu', value: 'Chỉ 100 µL - tiết kiệm tối đa hóa chất' },
-    ],
-    features: [
-      'Công nghệ khuấy trộn bằng sóng siêu âm không tiếp xúc, tránh lây nhiễm chéo',
-      'Đầu dò chống va chạm 3 chiều thông minh và phát hiện bọt khí/cục máu đông',
-      'Kiểm soát chất lượng nội kiểm QC biểu đồ Levey-Jennings tự động',
-      'Bộ phận làm lạnh Peltier bảo đảm hóa chất luôn ở trạng thái tốt nhất'
-    ],
-    certifications: ['CE Mark', 'ISO 13485:2016', 'TUV Rheinland']
-  },
-  {
-    id: 'he-thong-xu-ly-mau',
-    name: 'Hệ thống xử lý mẫu tự động',
-    category: 'he-thong-xu-ly-mau',
-    categoryLabel: 'Tự động hóa Lab',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA20a8Cd0cFT7IM62Pij2DSPzZJ1s-gA4pG4inrHYxcPDHhYaHry0jTDn3XNNUe-auKw9iM6BzWzyGN6QgNhaiWQBpF0BoMs9M1fwisacvkB6MlDYL6xcD-wtbrXS8gr8IIKVduRbjWNEM8lgWb3FKkv3MCE_pCEDYNObutJPopaiYOstkNM6XpS-hz2aayV4jaaYXia9Nxy_5EY2M2ZawGe3MsRPfH-dgrPuJw7UrdCeeAa127XosnSQ',
-    alt: 'Hệ thống xử lý mẫu tự động',
-    shortDesc: 'Tối ưu quy trình trước xét nghiệm: ly tâm, mở nắp, phân chia ống mẫu và lưu trữ mẫu tự động.',
-    fullDesc: 'Giải pháp tự động hóa toàn diện cho phòng xét nghiệm (TLA - Total Laboratory Automation). Hệ thống kết nối liền mạch từ khâu nhận mẫu máu, kiểm tra thể tích mẫu, ly tâm tự động cân bằng, mở nắp chân không, phân chia mẫu con (aliquoting), dán nhãn tự động và chuyển trực tiếp tới các phân hệ máy sinh hóa, miễn dịch.',
-    brand: 'Convergent Technologies',
-    origin: 'Đức / Châu Âu',
-    specs: [
-      { label: 'Công suất nạp mẫu', value: 'Lên đến 1.000 ống mẫu/giờ' },
-      { label: 'Module tích hợp', value: 'Ly tâm tự động, Mở nắp, Đóng nắp, Chia mẫu, Lưu kho lạnh' },
-      { label: 'Khả năng lưu trữ', value: 'Tủ lạnh lưu mẫu tự động sức chứa 15.000 ống' },
-      { label: 'Độ an toàn sinh học', value: 'Cấp II - Bảo vệ tuyệt đối người vận hành' },
-      { label: 'Phần mềm quản lý', value: 'Middleware thông minh tự định tuyến ống mẫu ưu tiên' },
-    ],
-    features: [
-      'Cắt giảm đến 80% thời gian thao tác thủ công của kỹ thuật viên',
-      'Loại bỏ 99.9% sai sót do con người trong quá trình dán nhãn và phân mẫu',
-      'Cảnh báo sớm mẫu tán huyết, đục lipid và vàng da trước khi xét nghiệm',
-      'Định tuyến tự động các mẫu cấp cứu (STAT) vào luồng ưu tiên số 1'
-    ],
-    certifications: ['CE-IVD', 'ISO 15189 Ready', 'ISO 13485']
-  }
-];
+export const PRODUCTS: Product[] = REAL_PRODUCTS;
 
 export const PARTNERS: Partner[] = [
   { name: 'DIRUI', textColor: 'text-secondary', highlight: true },
@@ -451,6 +215,195 @@ export const ARTICLES: Article[] = [
       'Quy trình bảo quản chuỗi lạnh (Cold Chain) đối với sinh phẩm xét nghiệm'
     ]
   }
+  ,{
+    id: "xet-nghiem-ft3-chan-doan-benh-ly-tuyen-giap",
+    title: "Xét nghiệm FT3 hữu hiệu trong chuẩn đoán bệnh lý tuyến giáp",
+    slug: "xet-nghiem-ft3-chan-doan-benh-ly-tuyen-giap",
+    date: "15/01/2025",
+    image: "https://login.medlatec.vn//ImagePath/images/20200429/20200429_tuyen-giap.jpg.png",
+    alt: "Xét nghiệm FT3 hữu hiệu trong chuẩn đoán bệnh lý tuyến giáp",
+    category: "Kiến thức sức khỏe",
+    readTime: "5 phút đọc",
+    excerpt: "&nbsp; Rối loạn hormon tuyến giáp là nguyên nhân của các bệnh lý tuyến giáp. Cho nên việc thường xuyên kiểm tra nồng độ hormon tuyến giáp là biện pháp hữu hiệu trong việc theo dõi, phát hiện sớm các bệnh lý tuyến giáp. FT3 mà một trong những hormon cần phải theo dõi thường [&hellip;]",
+    content: [
+      "&nbsp; Rối loạn hormon tuyến giáp là nguyên nhân của các bệnh lý tuyến giáp. Cho nên việc thường xuyên kiểm tra nồng độ hormon tuyến giáp là biện pháp hữu hiệu trong việc theo dõi, phát hiện sớm các bệnh lý tuyến giáp. FT3 mà một trong những hormon cần phải theo dõi thường [&hellip;]",
+      "Để tìm hiểu thêm về bài viết 'Xét nghiệm FT3 hữu hiệu trong chuẩn đoán bệnh lý tuyến giáp' cũng như các giải pháp chẩn đoán xét nghiệm liên quan, quý khách hàng vui lòng liên hệ trực tiếp Trí Việt Phát Medical để được tư vấn chuyên sâu.",
+      "Trí Việt Phát cam kết cung cấp các hệ thống máy xét nghiệm và sinh phẩm chẩn đoán y khoa chính hãng, đáp ứng tiêu chuẩn khắt khe của Bộ Y Tế."
+    ],
+    keyPoints: [
+      "Nội dung chuyên sâu cập nhật từ cổng thông tin Thietbiytegroup.com",
+      "Hướng dẫn thực hành xét nghiệm và ứng dụng lâm sàng thực tế",
+      "Liên hệ hotline 0904.698.699 - 0392.123.688 để được hỗ trợ 24/7"
+    ]
+  }
+  ,{
+    id: "xet-nghiem-tsh-chan-doan-cac-benh-ve-tuyen-giap",
+    title: "Xét nghiệm TSH trong việc chẩn đoán các bệnh về tuyến giáp",
+    slug: "xet-nghiem-tsh-chan-doan-cac-benh-ve-tuyen-giap",
+    date: "15/01/2025",
+    image: "https://login.medlatec.vn//ImagePath/images/20200207/20200207_xet-nghiem-tsh-01.jpg",
+    alt: "Xét nghiệm TSH trong việc chẩn đoán các bệnh về tuyến giáp",
+    category: "Kiến thức sức khỏe",
+    readTime: "5 phút đọc",
+    excerpt: "TSH là gì? Xét nghiệm TSH liên quan gì đến tuyến giáp. TSH sẽ thông báo cho tuyến giáp làm gì? Cùng giải đáp thắc mắc trong bài viết dưới đây!",
+    content: [
+      "TSH là gì? Xét nghiệm TSH liên quan gì đến tuyến giáp. TSH sẽ thông báo cho tuyến giáp làm gì? Cùng giải đáp thắc mắc trong bài viết dưới đây!",
+      "Để tìm hiểu thêm về bài viết 'Xét nghiệm TSH trong việc chẩn đoán các bệnh về tuyến giáp' cũng như các giải pháp chẩn đoán xét nghiệm liên quan, quý khách hàng vui lòng liên hệ trực tiếp Trí Việt Phát Medical để được tư vấn chuyên sâu.",
+      "Trí Việt Phát cam kết cung cấp các hệ thống máy xét nghiệm và sinh phẩm chẩn đoán y khoa chính hãng, đáp ứng tiêu chuẩn khắt khe của Bộ Y Tế."
+    ],
+    keyPoints: [
+      "Nội dung chuyên sâu cập nhật từ cổng thông tin Thietbiytegroup.com",
+      "Hướng dẫn thực hành xét nghiệm và ứng dụng lâm sàng thực tế",
+      "Liên hệ hotline 0904.698.699 - 0392.123.688 để được hỗ trợ 24/7"
+    ]
+  }
+  ,{
+    id: "benh-tuyen-giap",
+    title: "FT4 - Chỉ số cơ bản trong theo dõi các bệnh lý tuyến giáp",
+    slug: "benh-tuyen-giap",
+    date: "15/01/2025",
+    image: "https://thietbiytegroup.com/wp-content/uploads/2024/08/pasted-image-0.jpg",
+    alt: "FT4 - Chỉ số cơ bản trong theo dõi các bệnh lý tuyến giáp",
+    category: "Kiến thức sức khỏe",
+    readTime: "5 phút đọc",
+    excerpt: "Tuyến giáp là một trong những tuyến nội tiết có chức năng vô cùng quan trọng đối với cơ thể. Cùng Trí Việt Phát tìm hiểu những thông tin liên quan và giải đáp tuyến giáp là bệnh gì qua bài viết dưới đây nhé",
+    content: [
+      "Tuyến giáp là một trong những tuyến nội tiết có chức năng vô cùng quan trọng đối với cơ thể. Cùng Trí Việt Phát tìm hiểu những thông tin liên quan và giải đáp tuyến giáp là bệnh gì qua bài viết dưới đây nhé",
+      "Để tìm hiểu thêm về bài viết 'FT4 - Chỉ số cơ bản trong theo dõi các bệnh lý tuyến giáp' cũng như các giải pháp chẩn đoán xét nghiệm liên quan, quý khách hàng vui lòng liên hệ trực tiếp Trí Việt Phát Medical để được tư vấn chuyên sâu.",
+      "Trí Việt Phát cam kết cung cấp các hệ thống máy xét nghiệm và sinh phẩm chẩn đoán y khoa chính hãng, đáp ứng tiêu chuẩn khắt khe của Bộ Y Tế."
+    ],
+    keyPoints: [
+      "Nội dung chuyên sâu cập nhật từ cổng thông tin Thietbiytegroup.com",
+      "Hướng dẫn thực hành xét nghiệm và ứng dụng lâm sàng thực tế",
+      "Liên hệ hotline 0904.698.699 - 0392.123.688 để được hỗ trợ 24/7"
+    ]
+  }
+  ,{
+    id: "xet-nghiem-hba1c-benh-tieu-duong",
+    title: "Xét nghiệm HBA1c có ý nghĩa gì với người bệnh tiểu đường?",
+    slug: "xet-nghiem-hba1c-benh-tieu-duong",
+    date: "15/01/2025",
+    image: "https://thietbiytegroup.com/wp-content/uploads/2024/07/knxnghiem.png",
+    alt: "Xét nghiệm HBA1c có ý nghĩa gì với người bệnh tiểu đường?",
+    category: "Kiến thức sức khỏe",
+    readTime: "5 phút đọc",
+    excerpt: "Xét nghiệm HbA1c không chỉ xác định một người bị đái tháo đường mà còn giúp người đã bị bệnh biết được chỉ số đường huyết tại thời điểm xét nghiệm.",
+    content: [
+      "Xét nghiệm HbA1c không chỉ xác định một người bị đái tháo đường mà còn giúp người đã bị bệnh biết được chỉ số đường huyết tại thời điểm xét nghiệm.",
+      "Để tìm hiểu thêm về bài viết 'Xét nghiệm HBA1c có ý nghĩa gì với người bệnh tiểu đường?' cũng như các giải pháp chẩn đoán xét nghiệm liên quan, quý khách hàng vui lòng liên hệ trực tiếp Trí Việt Phát Medical để được tư vấn chuyên sâu.",
+      "Trí Việt Phát cam kết cung cấp các hệ thống máy xét nghiệm và sinh phẩm chẩn đoán y khoa chính hãng, đáp ứng tiêu chuẩn khắt khe của Bộ Y Tế."
+    ],
+    keyPoints: [
+      "Nội dung chuyên sâu cập nhật từ cổng thông tin Thietbiytegroup.com",
+      "Hướng dẫn thực hành xét nghiệm và ứng dụng lâm sàng thực tế",
+      "Liên hệ hotline 0904.698.699 - 0392.123.688 để được hỗ trợ 24/7"
+    ]
+  }
+  ,{
+    id: "vai-tro-cua-xet-nghiem-sinh-hoa-mien-dich-mau",
+    title: "Vai trò của xét nghiệm sinh hoá - Miễn dịch máu",
+    slug: "vai-tro-cua-xet-nghiem-sinh-hoa-mien-dich-mau",
+    date: "15/01/2025",
+    image: "https://thietbiytegroup.com/wp-content/uploads/2024/04/CS-1600.png",
+    alt: "Vai trò của xét nghiệm sinh hoá - Miễn dịch máu",
+    category: "Tin y tế",
+    readTime: "5 phút đọc",
+    excerpt: "Xét nghiệm sinh hóa máu là một xét nghiệm y học phổ biến, xét nghiệm để đo lường nồng độ hay hoạt độ của một số chất hóa học nhất định trong bệnh phẩm là máu, qua đó giúp đánh giá chức năng của một số bộ phận, cơ quan trong cơ thể như gan, [&hellip;]",
+    content: [
+      "Xét nghiệm sinh hóa máu là một xét nghiệm y học phổ biến, xét nghiệm để đo lường nồng độ hay hoạt độ của một số chất hóa học nhất định trong bệnh phẩm là máu, qua đó giúp đánh giá chức năng của một số bộ phận, cơ quan trong cơ thể như gan, [&hellip;]",
+      "Để tìm hiểu thêm về bài viết 'Vai trò của xét nghiệm sinh hoá - Miễn dịch máu' cũng như các giải pháp chẩn đoán xét nghiệm liên quan, quý khách hàng vui lòng liên hệ trực tiếp Trí Việt Phát Medical để được tư vấn chuyên sâu.",
+      "Trí Việt Phát cam kết cung cấp các hệ thống máy xét nghiệm và sinh phẩm chẩn đoán y khoa chính hãng, đáp ứng tiêu chuẩn khắt khe của Bộ Y Tế."
+    ],
+    keyPoints: [
+      "Nội dung chuyên sâu cập nhật từ cổng thông tin Thietbiytegroup.com",
+      "Hướng dẫn thực hành xét nghiệm và ứng dụng lâm sàng thực tế",
+      "Liên hệ hotline 0904.698.699 - 0392.123.688 để được hỗ trợ 24/7"
+    ]
+  }
+  ,{
+    id: "cac-loai-xet-nghiem-mien-dich-thuong-dung",
+    title: "Các loại xét nghiệm miễn dịch thường dùng",
+    slug: "cac-loai-xet-nghiem-mien-dich-thuong-dung",
+    date: "15/01/2025",
+    image: "https://thietbiytegroup.com/wp-content/uploads/2024/06/H-800.png",
+    alt: "Các loại xét nghiệm miễn dịch thường dùng",
+    category: "Kiến thức sức khỏe",
+    readTime: "5 phút đọc",
+    excerpt: "Xét nghiệm miễn dịch là 1 trong những bước thường quy cần phải làm trong quá trình khám bệnh. Việc thực hiện xét nghiệm miễn dịch sẽ giúp đánh giá đúng hơn về tình hình sức khỏe của mỗi người, từ đó có phương hướng điều trị bệnh lý thích hợp. 1. Xét nghiệm miễn [&hellip;]",
+    content: [
+      "Xét nghiệm miễn dịch là 1 trong những bước thường quy cần phải làm trong quá trình khám bệnh. Việc thực hiện xét nghiệm miễn dịch sẽ giúp đánh giá đúng hơn về tình hình sức khỏe của mỗi người, từ đó có phương hướng điều trị bệnh lý thích hợp. 1. Xét nghiệm miễn [&hellip;]",
+      "Để tìm hiểu thêm về bài viết 'Các loại xét nghiệm miễn dịch thường dùng' cũng như các giải pháp chẩn đoán xét nghiệm liên quan, quý khách hàng vui lòng liên hệ trực tiếp Trí Việt Phát Medical để được tư vấn chuyên sâu.",
+      "Trí Việt Phát cam kết cung cấp các hệ thống máy xét nghiệm và sinh phẩm chẩn đoán y khoa chính hãng, đáp ứng tiêu chuẩn khắt khe của Bộ Y Tế."
+    ],
+    keyPoints: [
+      "Nội dung chuyên sâu cập nhật từ cổng thông tin Thietbiytegroup.com",
+      "Hướng dẫn thực hành xét nghiệm và ứng dụng lâm sàng thực tế",
+      "Liên hệ hotline 0904.698.699 - 0392.123.688 để được hỗ trợ 24/7"
+    ]
+  }
+  ,{
+    id: "tong-quan-ve-cac-xet-nghiem-mien-dich-danh-gia-suc-khoe",
+    title: "Tổng quan về các xét nghiệm miễn dịch và đánh giá sức khoẻ",
+    slug: "tong-quan-ve-cac-xet-nghiem-mien-dich-danh-gia-suc-khoe",
+    date: "15/01/2025",
+    image: "https://thietbiytegroup.com/wp-content/uploads/2024/08/32.jpg",
+    alt: "Tổng quan về các xét nghiệm miễn dịch và đánh giá sức khoẻ",
+    category: "Kiến thức sức khỏe",
+    readTime: "5 phút đọc",
+    excerpt: "Xét nghiệm miễn dịch sẽ giúp đánh giá đúng hơn về tình hình sức khỏe của mỗi người, từ đó có phương hướng điều trị bệnh lý thích hợp",
+    content: [
+      "Xét nghiệm miễn dịch sẽ giúp đánh giá đúng hơn về tình hình sức khỏe của mỗi người, từ đó có phương hướng điều trị bệnh lý thích hợp",
+      "Để tìm hiểu thêm về bài viết 'Tổng quan về các xét nghiệm miễn dịch và đánh giá sức khoẻ' cũng như các giải pháp chẩn đoán xét nghiệm liên quan, quý khách hàng vui lòng liên hệ trực tiếp Trí Việt Phát Medical để được tư vấn chuyên sâu.",
+      "Trí Việt Phát cam kết cung cấp các hệ thống máy xét nghiệm và sinh phẩm chẩn đoán y khoa chính hãng, đáp ứng tiêu chuẩn khắt khe của Bộ Y Tế."
+    ],
+    keyPoints: [
+      "Nội dung chuyên sâu cập nhật từ cổng thông tin Thietbiytegroup.com",
+      "Hướng dẫn thực hành xét nghiệm và ứng dụng lâm sàng thực tế",
+      "Liên hệ hotline 0904.698.699 - 0392.123.688 để được hỗ trợ 24/7"
+    ]
+  }
+  ,{
+    id: "nguoi-phu-nu-mac-xo-gan-bo-thuoc-dieu-tri-viem-gan-b",
+    title: "Phụ nữ mắc xơ gan giai đoạn cuối do bỏ thuốc điều trị viêm gan B",
+    slug: "nguoi-phu-nu-mac-xo-gan-bo-thuoc-dieu-tri-viem-gan-b",
+    date: "15/01/2025",
+    image: "https://thietbiytegroup.com/wp-content/uploads/2024/04/benh-nhan-xo-gan.png",
+    alt: "Phụ nữ mắc xơ gan giai đoạn cuối do bỏ thuốc điều trị viêm gan B",
+    category: "Kiến thức sức khỏe",
+    readTime: "5 phút đọc",
+    excerpt: "Sau 4 năm bỏ thuốc điều trị viêm gan B vì nghĩ virus không hoạt động, người phụ nữ nhập viện trong tình trạng xơ gan chướng bụng nhiều vàng da",
+    content: [
+      "Sau 4 năm bỏ thuốc điều trị viêm gan B vì nghĩ virus không hoạt động, người phụ nữ nhập viện trong tình trạng xơ gan chướng bụng nhiều vàng da",
+      "Để tìm hiểu thêm về bài viết 'Phụ nữ mắc xơ gan giai đoạn cuối do bỏ thuốc điều trị viêm gan B' cũng như các giải pháp chẩn đoán xét nghiệm liên quan, quý khách hàng vui lòng liên hệ trực tiếp Trí Việt Phát Medical để được tư vấn chuyên sâu.",
+      "Trí Việt Phát cam kết cung cấp các hệ thống máy xét nghiệm và sinh phẩm chẩn đoán y khoa chính hãng, đáp ứng tiêu chuẩn khắt khe của Bộ Y Tế."
+    ],
+    keyPoints: [
+      "Nội dung chuyên sâu cập nhật từ cổng thông tin Thietbiytegroup.com",
+      "Hướng dẫn thực hành xét nghiệm và ứng dụng lâm sàng thực tế",
+      "Liên hệ hotline 0904.698.699 - 0392.123.688 để được hỗ trợ 24/7"
+    ]
+  }
+  ,{
+    id: "viem-gan-b-co-sinh-con-duoc-khong",
+    title: "Viêm gan B có mang thai được không?",
+    slug: "viem-gan-b-co-sinh-con-duoc-khong",
+    date: "15/01/2025",
+    image: "https://thietbiytegroup.com/wp-content/uploads/2024/04/vien-gan-b-co-sinh-con-duoc-khong.jpg",
+    alt: "Viêm gan B có mang thai được không?",
+    category: "Kiến thức sức khỏe",
+    readTime: "5 phút đọc",
+    excerpt: "Tìm hiểu về vấn đề người viêm gan B có mang thai được không, tìm ra những biện pháp cần thiết để đảm bảo quá trình thai kỳ diễn ra an toàn",
+    content: [
+      "Tìm hiểu về vấn đề người viêm gan B có mang thai được không, tìm ra những biện pháp cần thiết để đảm bảo quá trình thai kỳ diễn ra an toàn",
+      "Để tìm hiểu thêm về bài viết 'Viêm gan B có mang thai được không?' cũng như các giải pháp chẩn đoán xét nghiệm liên quan, quý khách hàng vui lòng liên hệ trực tiếp Trí Việt Phát Medical để được tư vấn chuyên sâu.",
+      "Trí Việt Phát cam kết cung cấp các hệ thống máy xét nghiệm và sinh phẩm chẩn đoán y khoa chính hãng, đáp ứng tiêu chuẩn khắt khe của Bộ Y Tế."
+    ],
+    keyPoints: [
+      "Nội dung chuyên sâu cập nhật từ cổng thông tin Thietbiytegroup.com",
+      "Hướng dẫn thực hành xét nghiệm và ứng dụng lâm sàng thực tế",
+      "Liên hệ hotline 0904.698.699 - 0392.123.688 để được hỗ trợ 24/7"
+    ]
+  }
 ];
 
 export const DOCUMENTS: DocumentItem[] = [
@@ -502,7 +455,7 @@ export const DOCUMENTS: DocumentItem[] = [
     category: 'Hồ sơ doanh nghiệp',
     fileSize: '8.6 MB',
     updateDate: '01/01/2025',
-    description: 'Giới thiệu 16 năm kinh nghiệm, mạng lưới 63 tỉnh thành, năng lực nhân sự kỹ sư y sinh và danh sách dự án tiêu biểu.'
+    description: 'Giới thiệu 16 năm kinh nghiệm, mạng lưới 34 tỉnh thành, năng lực nhân sự kỹ sư y sinh và danh sách dự án tiêu biểu.'
   }
 ];
 

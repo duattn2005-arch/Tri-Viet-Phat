@@ -39,14 +39,12 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
   const [messages, setMessages] = useState<ChatMessage[]>(INITIAL_MESSAGES);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [showInvitation, setShowInvitation] = useState(true);
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     if (isOpen) {
-      setShowInvitation(false);
       setTimeout(() => {
         inputRef.current?.focus();
         scrollToBottom();
@@ -103,7 +101,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
       const replyText =
         data.reply ||
         data.fallback ||
-        'Cảm ơn Quý khách! Quý khách vui lòng liên hệ Hotline 0984.567.890 để được chuyên viên kỹ thuật giải đáp chi tiết nhất.';
+        `Cảm ơn Quý khách! Quý khách vui lòng liên hệ Hotline ${COMPANY_INFO.hotline} để được chuyên viên kỹ thuật giải đáp chi tiết nhất.`;
 
       const aiMsg: ChatMessage = {
         id: `ai-${Date.now()}`,
@@ -118,7 +116,7 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
       const errorMsg: ChatMessage = {
         id: `ai-${Date.now()}`,
         sender: 'assistant',
-        text: 'Hiện tại hệ thống tư vấn trực tuyến đang bảo trì kết nối. Quý khách vui lòng gọi trực tiếp Hotline **0984.567.890** để gặp kỹ sư tư vấn ngay lập tức ạ!',
+        text: `Hiện tại hệ thống tư vấn trực tuyến đang bảo trì kết nối. Quý khách vui lòng gọi trực tiếp Hotline **${COMPANY_INFO.hotline}** để gặp kỹ sư tư vấn ngay lập tức ạ!`,
         timestamp: getCurrentTime(),
       };
       setMessages((prev) => [...prev, errorMsg]);
@@ -134,29 +132,101 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
     }
   };
 
+  const cleanMedicalFormulas = (raw: string): string => {
+    if (!raw) return '';
+    let str = raw;
+
+    // Replace exact common medical ion LaTeX strings
+    str = str.replace(/\$Na\^\{\+?\}\$|\$Na\^\+\$/gi, 'Na⁺');
+    str = str.replace(/\$K\^\{\+?\}\$|\$K\^\+\$/gi, 'K⁺');
+    str = str.replace(/\$Cl\^\{\-?\}\$|\$Cl\^\-\$/gi, 'Cl⁻');
+    str = str.replace(/\$Ca\^\{\+\+\}\$|\$Ca\^\{2\+\}\$|\$Ca\^\+\+\$|\$Ca\^2\+\$/gi, 'Ca²⁺');
+    str = str.replace(/\$Li\^\{\+?\}\$|\$Li\^\+\$/gi, 'Li⁺');
+    str = str.replace(/\$Mg\^\{2\+\}\$|\$Mg\^\{\+\+\}\$|\$Mg\^2\+\$/gi, 'Mg²⁺');
+    str = str.replace(/\$pH\$/gi, 'pH');
+    str = str.replace(/\$HCO_3\^-\$|\$HCO_3\^\{\-\}\$/gi, 'HCO₃⁻');
+
+    // Generic LaTeX math tokens enclosed in $...$
+    str = str.replace(/\$([^$]+)\$/g, (_, inner) => {
+      return inner
+        .replace(/\\text\{([^}]+)\}/g, '$1')
+        .replace(/\\mathrm\{([^}]+)\}/g, '$1')
+        .replace(/\\times/g, '×')
+        .replace(/\\pm/g, '±')
+        .replace(/\\le(q)?/g, '≤')
+        .replace(/\\ge(q)?/g, '≥')
+        .replace(/\\mu/g, 'µ')
+        .replace(/\^\{\+\+\}/g, '²⁺')
+        .replace(/\^\{2\+\}/g, '²⁺')
+        .replace(/\^\{\+\}/g, '⁺')
+        .replace(/\^\{\-\}/g, '⁻')
+        .replace(/\^\+/g, '⁺')
+        .replace(/\^\-/g, '⁻')
+        .replace(/\^2/g, '²')
+        .replace(/\^3/g, '³')
+        .replace(/\_2/g, '₂')
+        .replace(/\_3/g, '₃')
+        .replace(/\_4/g, '₄')
+        .replace(/\{|\}/g, '');
+    });
+
+    // Standalone superscripts outside $
+    str = str.replace(/Na\^\+/g, 'Na⁺');
+    str = str.replace(/K\^\+/g, 'K⁺');
+    str = str.replace(/Cl\^\-/g, 'Cl⁻');
+    str = str.replace(/Ca\^(\+\+|2\+)/g, 'Ca²⁺');
+    str = str.replace(/Li\^\+/g, 'Li⁺');
+
+    return str;
+  };
+
+  const renderInlineFormatted = (content: string) => {
+    // Splits by **bold** or *italic*
+    const tokens = content.split(/(\*\*.*?\*\*|\*[^*\n]+?\*)/g);
+    return tokens.map((tok, tIdx) => {
+      if (tok.startsWith('**') && tok.endsWith('**') && tok.length >= 4) {
+        return (
+          <strong key={tIdx} className="font-bold text-[#006194]">
+            {tok.slice(2, -2)}
+          </strong>
+        );
+      }
+      if (tok.startsWith('*') && tok.endsWith('*') && tok.length >= 2 && !tok.startsWith('**')) {
+        return (
+          <em key={tIdx} className="italic text-[#1e293b]">
+            {tok.slice(1, -1)}
+          </em>
+        );
+      }
+      return <span key={tIdx}>{tok}</span>;
+    });
+  };
+
   const renderFormattedText = (text: string) => {
-    return text.split('\n').map((line, idx) => {
-      const parts = line.split(/(\*\*.*?\*\*)/g);
+    const cleaned = cleanMedicalFormulas(text);
+    const lines = cleaned.split('\n');
+
+    return lines.map((line, idx) => {
+      const trimmed = line.trim();
+      if (!trimmed) {
+        return <p key={idx} className="h-1.5" />;
+      }
+
+      // Check if line is a bullet item: starts with "* ", "- ", "• "
+      const bulletMatch = trimmed.match(/^(\*|-|•)\s+(.*)$/);
+      if (bulletMatch) {
+        const itemContent = bulletMatch[2];
+        return (
+          <div key={idx} className="flex items-start gap-1.5 pl-0.5 my-1 text-[13px] leading-relaxed">
+            <span className="text-[#006194] font-bold shrink-0 mt-0.5">•</span>
+            <div className="flex-1">{renderInlineFormatted(itemContent)}</div>
+          </div>
+        );
+      }
+
       return (
-        <p key={idx} className={line.trim() === '' ? 'h-2' : 'min-h-[1.2em]'}>
-          {parts.map((part, pIdx) => {
-            if (part.startsWith('**') && part.endsWith('**')) {
-              return (
-                <strong key={pIdx} className="font-bold text-[#006194]">
-                  {part.slice(2, -2)}
-                </strong>
-              );
-            }
-            if (part.startsWith('- ')) {
-              return (
-                <span key={pIdx} className="flex items-start gap-1.5 pl-1 my-0.5">
-                  <span className="text-[#006194] font-bold shrink-0">•</span>
-                  <span>{part.slice(2)}</span>
-                </span>
-              );
-            }
-            return <span key={pIdx}>{part}</span>;
-          })}
+        <p key={idx} className="min-h-[1.2em] my-1 text-[13px] leading-relaxed">
+          {renderInlineFormatted(trimmed)}
         </p>
       );
     });
@@ -164,56 +234,10 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
 
   return (
     <>
-      {/* Floating Invitation Tooltip above the 2 bubbles when closed */}
-      {showInvitation && !isOpen && (
-        <div className="fixed bottom-38 right-6 z-40 bg-white px-4 py-3 rounded-2xl shadow-xl border border-[#bae6fd] max-w-[280px] animate-in fade-in slide-in-from-bottom-2 duration-300 relative group">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setShowInvitation(false);
-            }}
-            className="absolute -top-2 -left-2 w-5 h-5 rounded-full bg-[#f1f5f9] text-[#64748b] hover:bg-[#e2e8f0] flex items-center justify-center text-[12px] shadow-sm cursor-pointer"
-            title="Đóng"
-          >
-            ×
-          </button>
-          <div className="flex items-center justify-between mb-1.5">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#10b981] animate-ping"></span>
-              <span className="text-[12.5px] font-bold text-[#006194]">Hỗ trợ Trí Việt Phát 24/7</span>
-            </div>
-            <span className="text-[10px] bg-[#e0f2fe] text-[#0369a1] font-semibold px-1.5 py-0.5 rounded-sm">Online</span>
-          </div>
-          <p className="text-[12px] text-[#334155] leading-relaxed mb-2">
-            Cần thông số máy xét nghiệm, báo giá hóa chất Dewei hoặc hỗ trợ kỹ thuật?
-          </p>
-          <div className="flex items-center gap-1.5 pt-1 border-t border-[#f1f5f9] text-[11px]">
-            <a
-              href={`tel:${COMPANY_INFO.hotline.replace(/\./g, '')}`}
-              className="text-[#bb0112] font-bold hover:underline flex items-center gap-0.5"
-            >
-              <span className="material-symbols-outlined text-[13px]">call</span>
-              {COMPANY_INFO.hotline}
-            </a>
-            <span className="text-[#cbd5e1]">•</span>
-            <a
-              href={COMPANY_INFO.zaloUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#006194] font-semibold hover:underline"
-            >
-              Zalo
-            </a>
-            <span className="text-[#cbd5e1]">•</span>
-            <span className="text-[#0284c7] font-medium">Chat AI</span>
-          </div>
-        </div>
-      )}
-
       {/* Floating Chat Dialog Window */}
       {isOpen && (
         <div
-          className="fixed bottom-6 right-4 sm:right-6 z-50 w-[94vw] sm:w-[420px] h-[600px] max-h-[88vh] bg-white rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.25)] border border-[#bae6fd]/80 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200"
+          className="fixed bottom-6 right-4 sm:right-6 z-50 w-[94vw] sm:w-[440px] md:w-[450px] h-[600px] max-h-[88vh] bg-white rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.25)] border border-[#bae6fd]/80 flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200"
           role="dialog"
           aria-label="Cửa sổ Trợ lý AI & Liên hệ Trí Việt Phát"
         >
@@ -257,45 +281,6 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
                 <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
-          </div>
-
-          {/* Direct Multi-Channel Contact Bar (Gộp tất cả liên hệ vào trong bong bóng chat) */}
-          <div className="bg-[#f8fafc] px-3.5 py-2.5 border-b border-[#e2e8f0] flex items-center gap-2 shrink-0">
-            {/* Hotline Call Button */}
-            <a
-              href={`tel:${COMPANY_INFO.hotline.replace(/\./g, '')}`}
-              className="flex-1 flex items-center justify-center gap-1.5 bg-[#bb0112] hover:bg-[#99000e] text-white py-1.5 px-2 rounded-xl text-[11.5px] font-bold shadow-xs transition-colors cursor-pointer group"
-            >
-              <span className="material-symbols-outlined text-[15px] animate-pulse">call</span>
-              <span>Hotline {COMPANY_INFO.hotline}</span>
-            </a>
-
-            {/* Zalo Button */}
-            <a
-              href={COMPANY_INFO.zaloUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-1.5 bg-[#006194] hover:bg-[#004e77] text-white py-1.5 px-2 rounded-xl text-[11.5px] font-bold shadow-xs transition-colors cursor-pointer"
-            >
-              <span className="w-4 h-4 rounded-full bg-white text-[#006194] text-[10px] font-black flex items-center justify-center">Z</span>
-              <span>Chat Zalo</span>
-            </a>
-
-            {/* Request Quote Button */}
-            {onOpenConsultation && (
-              <button
-                type="button"
-                onClick={() => {
-                  onClose();
-                  onOpenConsultation();
-                }}
-                className="flex items-center justify-center gap-1 bg-white hover:bg-[#e0f2fe] text-[#006194] border border-[#bae6fd] py-1.5 px-2.5 rounded-xl text-[11.5px] font-semibold transition-colors cursor-pointer"
-                title="Đăng ký nhận báo giá chiết khấu"
-              >
-                <span className="material-symbols-outlined text-[14px]">request_quote</span>
-                <span>Báo giá</span>
-              </button>
-            )}
           </div>
 
           {/* Messages Body */}
@@ -413,14 +398,14 @@ export const AiChatBubble: React.FC<AiChatBubbleProps> = ({
                 <span className="material-symbols-outlined text-[18px]">send</span>
               </button>
             </div>
-            <div className="mt-1.5 flex items-center justify-between text-[10.5px] text-[#94a3b8] px-1">
-              <span>Được hỗ trợ bởi Gemini 3.8 Flash</span>
+            <div className="mt-1.5 flex items-center justify-end text-[11px] text-[#94a3b8] px-1">
               <a
                 href={COMPANY_INFO.zaloUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#006194] hover:underline"
+                className="text-[#006194] hover:underline flex items-center gap-1"
               >
+                <span className="material-symbols-outlined text-[13px]">chat</span>
                 Chat Zalo trực tiếp
               </a>
             </div>

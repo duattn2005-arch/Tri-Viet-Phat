@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Product } from '../types';
-import { MAJOR_CITIES, PROVINCES_28 } from '../data/provinces';
+import { ProvinceSelect } from './ProvinceSelect';
 
 interface ProductDetailModalProps {
   product: Product | null;
@@ -115,20 +115,34 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 )}
               </div>
 
-              {/* Red Bordered Benefits Box - Exactly as in screenshot */}
-              <div className="relative mt-4 pt-3 pb-3 px-4 rounded-xl border-2 border-[#d32f2f] bg-white">
-                <div className="absolute -top-3 left-4 bg-[#d32f2f] text-white text-[11.5px] font-bold py-0.5 px-3 rounded-full flex items-center gap-1.5 shadow-xs">
-                  <span className="material-symbols-outlined text-[14px]">check_circle</span>
-                  <span>LỢI ÍCH KHI MUA HÀNG THIẾT BỊ Y TẾ</span>
+              {/* Red Bordered Benefits Box - Exactly 100% as in screenshot */}
+              <div className="relative mt-6 pt-5 pb-4 px-4 sm:px-5 rounded-2xl border-2 border-[#d32f2f] bg-white">
+                <div className="absolute -top-4 left-6 bg-[#d32f2f] text-white text-[12px] sm:text-[13px] font-bold py-1.5 px-4 rounded-full flex items-center gap-2 shadow-sm">
+                  <span className="material-symbols-outlined text-[16px] text-white">check_circle</span>
+                  <span className="tracking-wide">LỢI ÍCH KHI MUA HÀNG THIẾT BỊ Y TẾ</span>
                 </div>
-                <ul className="mt-2 space-y-1.5 text-[12.5px] text-[#1e293b]">
-                  {defaultBenefits.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <span className="text-[#d32f2f] font-bold shrink-0">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="space-y-3 pt-1 text-[13.5px] text-[#1e293b]">
+                  <div className="flex items-start gap-3">
+                    <span className="text-[#d32f2f] material-symbols-outlined text-[19px] shrink-0 mt-0.5">person</span>
+                    <span>Nhà cung cấp uy tín thiết bị y tế ở Việt Nam</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-white bg-[#d32f2f] rounded-full w-4 h-4 flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">P</span>
+                    <span>Thiết bị y tế đạt chất lượng giá cả hợp lý</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-[#d32f2f] material-symbols-outlined text-[19px] shrink-0 mt-0.5">sync</span>
+                    <span>Thời gian bảo hành 12 tháng, dịch vụ chuyên nghiệp</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-[#d32f2f] material-symbols-outlined text-[19px] shrink-0 mt-0.5">calendar_month</span>
+                    <span>Hàng có sẵn kho có thể giao ngay</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-[#d32f2f] material-symbols-outlined text-[19px] shrink-0 mt-0.5">featured_seasonal_and_gifts</span>
+                    <span>Ưu đãi khi mua hàng với số lượng lớn</span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -189,29 +203,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   </div>
 
                   <div>
-                    <select
+                    <ProvinceSelect
                       value={formData.region}
-                      onChange={(e) =>
-                        setFormData({ ...formData, region: e.target.value })
+                      onChange={(val) =>
+                        setFormData({ ...formData, region: val })
                       }
-                      className="w-full bg-white text-[#0f172a] text-[13px] px-3.5 py-2.5 rounded-xl border border-transparent focus:outline-none focus:ring-2 focus:ring-white"
-                    >
-                      <option value="Toàn quốc">Khu vực (34 tỉnh thành)</option>
-                      <optgroup label="6 Thành phố trực thuộc TW">
-                        {MAJOR_CITIES.map((city) => (
-                          <option key={city} value={city}>
-                            {city}
-                          </option>
-                        ))}
-                      </optgroup>
-                      <optgroup label="28 Tỉnh sau sáp nhập">
-                        {PROVINCES_28.map((prov) => (
-                          <option key={prov} value={prov}>
-                            {prov}
-                          </option>
-                        ))}
-                      </optgroup>
-                    </select>
+                      variant="white"
+                      includeAllNationOption={true}
+                      hasIcon={false}
+                    />
                   </div>
 
                   <button
@@ -236,57 +236,69 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           </div>
 
           <div className="space-y-6 text-[#1e293b]">
-            {/* 1. Thông số kỹ thuật */}
-            <div>
-              <h3 className="text-[17px] font-bold text-[#0f172a] mb-3">
-                1. Thông số kỹ thuật
-              </h3>
-              <ul className="space-y-2 text-[14px] pl-2 text-[#334155]">
-                {product.specs.map((spec, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <span className="text-[#64748b]">-</span>
-                    <span>
-                      <strong className="text-[#0f172a]">{spec.label}:</strong> {spec.value}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* Scraped Complete Content / Table from Website */}
+            {product.detailHtml && (
+              <div 
+                className="product-detail-html overflow-x-auto"
+                dangerouslySetInnerHTML={{ __html: product.detailHtml }}
+              />
+            )}
 
-            {/* 2. Đặc điểm kỹ thuật */}
-            <div>
-              <h3 className="text-[17px] font-bold text-[#0f172a] mb-3">
-                2. Đặc điểm kỹ thuật
-              </h3>
-
-              {product.detailedFeatures && product.detailedFeatures.length > 0 ? (
-                <div className="space-y-4 pl-2">
-                  {product.detailedFeatures.map((feat, idx) => (
-                    <div key={idx} className="space-y-1">
-                      <h4 className="text-[14.5px] font-bold text-[#0f172a] flex items-center gap-2">
-                        <span className="text-[#0f172a] text-[18px] leading-none">•</span>
-                        <span>{feat.title}</span>
-                      </h4>
-                      <p className="text-[13.5px] text-[#475569] pl-4 leading-relaxed">
-                        {feat.desc}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <ul className="space-y-2 pl-2">
-                  {product.features.map((feat, idx) => (
-                    <li
-                      key={idx}
-                      className="text-[13.5px] text-[#475569] flex items-start gap-2"
-                    >
-                      <span className="text-[#0f172a]">•</span>
-                      <span>{feat}</span>
+            {/* 1. Thông số kỹ thuật (if no detailHtml or detailed specs available) */}
+            {(!product.detailHtml || (product.specs && product.specs.length > 0 && product.id !== 'dewei')) && (
+              <div>
+                <h3 className="text-[17px] font-bold text-[#0f172a] mb-3">
+                  {product.detailHtml ? 'Thông số bổ sung' : '1. Thông số kỹ thuật'}
+                </h3>
+                <ul className="space-y-2 text-[14px] pl-2 text-[#334155]">
+                  {product.specs.map((spec, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-[#64748b]">-</span>
+                      <span>
+                        <strong className="text-[#0f172a]">{spec.label}:</strong> {spec.value}
+                      </span>
                     </li>
                   ))}
                 </ul>
-              )}
-            </div>
+              </div>
+            )}
+
+            {/* 2. Đặc điểm kỹ thuật (if no detailHtml) */}
+            {!product.detailHtml && (
+              <div>
+                <h3 className="text-[17px] font-bold text-[#0f172a] mb-3">
+                  2. Đặc điểm kỹ thuật
+                </h3>
+
+                {product.detailedFeatures && product.detailedFeatures.length > 0 ? (
+                  <div className="space-y-4 pl-2">
+                    {product.detailedFeatures.map((feat, idx) => (
+                      <div key={idx} className="space-y-1">
+                        <h4 className="text-[14.5px] font-bold text-[#0f172a] flex items-center gap-2">
+                          <span className="text-[#0f172a] text-[18px] leading-none">•</span>
+                          <span>{feat.title}</span>
+                        </h4>
+                        <p className="text-[13.5px] text-[#475569] pl-4 leading-relaxed">
+                          {feat.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <ul className="space-y-2 pl-2">
+                    {product.features.map((feat, idx) => (
+                      <li
+                        key={idx}
+                        className="text-[13.5px] text-[#475569] flex items-start gap-2"
+                      >
+                        <span className="text-[#0f172a]">•</span>
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
 
             {/* 3. Tiêu chuẩn chất lượng & Cam kết Trí Việt Phát */}
             {product.certifications && product.certifications.length > 0 && (
